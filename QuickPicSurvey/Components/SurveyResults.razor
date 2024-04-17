@@ -1,0 +1,63 @@
+﻿@rendermode InteractiveServer
+<div class="container">
+    @if (SurveyResultsList == null)
+    {
+        <div class="Customspinner"></div>
+    }
+    else
+    {
+
+        <h3>SurveyResults</h3>
+        <br />
+        <div class="row pt-3">
+            <div class="col-md-12">
+                <table class="table table-striped  table-sm">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Respondents Weight</th>
+                            <th>Expectation Gap</th>
+                            <th>Accuracy</th>
+                            <th>Manager's Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (SurveyResultsList != null && SurveyResultsList.Count > 0)
+                        {
+                            @foreach (var result in SurveyResultsList)
+                            {
+                                <tr>
+                                    <td>@result.Question</td>
+                                    <td>@result.RespondentsWeight</td>
+                                    <td>@result.ExpectationGap</td>
+                                    <td>
+                                        @if (result.BelowExpection)
+                                        {
+                                            <span class="bg-danger">@result.Accuracy</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="bg-success">@result.Accuracy</span>
+                                        }
+                                    </td>
+                                    <td>@result.ManagersWeight</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5">
+                                    <small>No Data Found</small>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    }
+</div>
+

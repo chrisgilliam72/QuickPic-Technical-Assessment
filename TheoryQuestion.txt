@@ -1,0 +1,5 @@
+I have not used many patterns as the problem domain is fairly simple and patterns can sometimes
+bloat and increase complexity when they are applied to problems which are already simple.
+I have used an onion layered clean architecture pattern to seperate my areas of concern
+I have used a respository pattern for the data access layer and I have used a facede(ish) pattern for my user sign in 
+service . 

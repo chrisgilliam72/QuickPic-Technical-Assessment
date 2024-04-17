@@ -1,0 +1,108 @@
+﻿
+@rendermode InteractiveServer
+@if (SurveyCompleted)
+{
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Your Completed Survey Answers</h2>
+            </div>
+            <div class="card-body">
+                <div class="row pt-3">
+                    <div class="col-md-12">
+                        <table class="table table-striped  table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Question #</th>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var question in ViewModel.Questions)
+                                {
+                                    <tr>
+                                        <td>@question.QuestionId</td>
+                                        <td>@question.QuestionText</td>
+                                        <td>@question.AnswerString</td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <br />
+
+    </div>
+}
+else
+{
+
+    <h3>SubmitSurvey</h3>
+
+    <EditForm Model="@ViewModel" OnValidSubmit="OnSubmitSurvey" FormName="SubmitSurvey">
+
+
+
+        <div class="grid">
+
+            @{
+                int i = 0;
+            }
+
+            @foreach (var question in ViewModel.Questions)
+            {
+
+                String rowId = "answerText" + i++;
+                <div class="mb-3">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <label for="@rowId" class="form-label">@question.QuestionText </label>
+                        </div>
+                        <div class="col-2">
+                            <InputText typeof="number" id="@rowId" @bind-Value="@question.AnswerString" class="form-control" />
+
+                        </div>
+                    </div>
+                    @if (question.Invalid)
+                    {
+                        <span class="text-danger"> Answer must be between 0 and 100</span>
+                    }
+                </div>
+
+            }
+            @if (!@ViewModel.IsValid() && Submitted)
+            {
+                <div class="row text-start my-2">
+                    <span class="text-danger">
+                        Sum of answers must be 100
+                    </span>
+                </div>
+            }
+
+            <div class="row text-center my-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </EditForm>
+}
+
+@if (ShowToast)
+{
+    <Toast Title=@ToastTitle IsError=@HasError ToastMessage=@ToastMessage  ></Toast>
+}
+
+
+
+
+ 

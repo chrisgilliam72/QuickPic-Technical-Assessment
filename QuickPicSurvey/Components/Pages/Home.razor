@@ -1,0 +1,30 @@
+﻿@page "/"
+@rendermode InteractiveServer
+<div class="container justify-content-center">
+        <div class="row">
+            <PageTitle>Home</PageTitle>
+        </div>
+        <div class="row justify-content-center">
+        @if (IsLoggedIn)
+        {
+            @if (AuthenticatedRespondentVM.IsAdmin)
+            {
+                <SurveyResults />
+            }
+            else
+            {
+                <SubmitSurvey UserId="AuthenticatedRespondentVM.Id" />
+            }
+        }                                             
+        else
+        {
+                <Login OnSuccessfullLogin="OnLoggedIn" />
+        }
+                
+        </div>
+  
+</div>
+
+
+
+

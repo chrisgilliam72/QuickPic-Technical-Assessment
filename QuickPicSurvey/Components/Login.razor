@@ -1,0 +1,42 @@
+﻿@rendermode InteractiveServer
+<div class="container ">
+    <div class="row justify-content-sm-center mt-5">
+        <div class="col-sm-6">
+            <EditForm FormName="LoginForm" Model="@ViewModel" OnValidSubmit="OnLogin">
+                <DataAnnotationsValidator/>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Survey Portal login</h2>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <label for="username" class="form-label">Username:</label>
+                            <InputText id="username" @bind-Value="@ViewModel.Username" class="form-control" />
+                            <ValidationMessage For="() =>ViewModel.Username" />
+                        </div>
+                        <div>
+                            <label for="password">Password:</label>
+                            <InputText type="password" id="password" @bind-Value="@ViewModel.Password" class="form-control" />
+                            <ValidationMessage For="() =>ViewModel.Password" />
+                        </div>
+                        @if (LoginFailed)
+                        {
+                            <div>
+                                <span class="text-danger">Username or password is incorrect</span>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" type="submit">
+                            Log In
+                        </button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+
+    </div>
+             
+</div>
+
