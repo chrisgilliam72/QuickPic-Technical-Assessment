@@ -53,7 +53,7 @@ o Objective.
 • Store the objective values from Objectives.txt in the Objective table. It must collate with the relevant question.
 • Use Visual Studio or Visual Studio Code for the project implementation.
 o You can use the CLI as you see fit during the development of your project.
-• The project should be done in C# and be an ASP.NET Core Web App, using Razor Pages for the front-end.
+• The project should be done in C# and be an ASP.NET Core Web App, using Blazor for the front-end.
 • Use Entity Framework Core to communicate with your Database.
 • Build your Model in the same project.
 • To save time, it is advised to use SQLite, but you can also use MySQL or Microsoft SQL Server.
